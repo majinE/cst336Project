@@ -15,6 +15,9 @@ app.get("/male", function(req, res){
     res.render("male.ejs");
 });
 
+app.get("/login", function(req, res) {
+   res.render("login.ejs"); 
+});
 
 //starting server
 app.listen(process.env.PORT, process.env.IP, function(){
