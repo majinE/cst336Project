@@ -21,11 +21,11 @@
       });//ready
     </script>
   </head>
-  <body id="36">
+  <body id="37">
     
     <h1>Guys</h1>
     
-    <form action="/maleProducts">
+    <form action="/femaleResults">
       
       <nav>
         <a href="/">Home</a>
@@ -44,13 +44,13 @@
       
       Filter by type:
       <select id="type" name="type">
-        <option value=""> Select One </option>
         <% types.forEach(function(i){ %>
             <option value="<%=i.typeClothing%>"> <%=i.typeClothing%> </option>
         <% }); %>
       </select>
       
-      Filter Price: <input type="number" min="0.00" max="100.00" step="0.01">
+      Filter Price: <input type="number" id="price" name="price" min="0.00" max="100.00" step="0.01">
+      <button>Submit</button>
       
       <div id="products">
       </div>

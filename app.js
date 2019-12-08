@@ -25,13 +25,22 @@ app.get("/female", async function(req, res){
     res.render("female", {"colors":colors, "types":clothingTypes, "products":femaleProducts});
 });
 
-// app.get("/maleResults", async function(req, res){
-//     let query = req.query;
-//     let colors = await getColors("Male");
-//     let clothingTypes = await getClothingType("Male");
-//     let maleProducts = await getFilteredProducts("Male", query);
-//     res.render("maleResults", {"colors":colors, "types":clothingTypes, "products":maleProducts});
-// });
+app.get("/maleResults", async function(req, res){
+    let query = req.query;
+    let colors = await getColors("Male");
+    let clothingTypes = await getClothingType("Male");
+    let maleProducts = await getFilteredProducts("Male", query);
+    res.render("maleResults", {"colors":colors, "types":clothingTypes, "products":maleProducts});
+});
+
+app.get("/femaleResults", async function(req, res){
+    let query = req.query;
+    let colors = await getColors("Female");
+    let clothingTypes = await getClothingType("Female");
+    let femaleProducts = await getFilteredProducts("Female", query);
+    res.render("femaleResults", {"colors":colors, "types":clothingTypes, "products":femaleProducts});
+});
+
 
 
 
@@ -134,7 +143,7 @@ function getFilteredProducts(gender, query){
           let sql = `SELECT uniqueId, price, imageLink
                      FROM ${gender}Products
                      WHERE
-                     typeClothing = ${type}`;
+                     typeClothing LIKE '${type}'`;
           if(query.color){
               sql += " AND color = ?";
               params.push(query.color);

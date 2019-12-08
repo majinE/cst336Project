@@ -3,18 +3,38 @@
   <head>
     <title>Girls Clothes</title>
     <link rel="stylesheet" href="/css/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        var products = <%- JSON.stringify(products) %>
+        var list = $("#products");
+        for(let i = 0; i < products.length; i++){
+          if(i%3 == 0){
+            list.append("<div class='row1'>");
+          } else if((i%3 == 2) || i == products.length-1){
+            list.append("</div>")
+          }
+          list.append(`<div class='column1'><img src='${products[i].imageLink}'>
+                        <h4> Price: ${products[i].price}  <button class='button'>Add to Cart </>`);
+        }
+        // for(let i )
+      });//ready
+    </script>
   </head>
-  
   <body id="37">
-    <h1>Girls</h1>
-    <nav>
-                <a href="/">Home</a>
-                <a href="/male">Guys</a>
-                <a href="/female">Girls</a>
-                <a href="/cart">Shopping Cart</a>
-    </nav>
     
-     Filter Color:
+    <h1>Guys</h1>
+    
+    <form action="/femaleResults">
+      
+      <nav>
+        <a href="/">Home</a>
+        <a href="/male">Guys</a>
+        <a href="/female">Girls</a>
+        <a href="/cart">Shopping Cart</a>
+      </nav>
+      
+      Filter Color:
       <select id="color" name="color">
         <option value=""> Select One </option>
         <% colors.forEach(function(i){ %>
@@ -24,61 +44,16 @@
       
       Filter by type:
       <select id="type" name="type">
-        <option value=""> Select One </option>
         <% types.forEach(function(i){ %>
             <option value="<%=i.typeClothing%>"> <%=i.typeClothing%> </option>
         <% }); %>
       </select>
       
-      Filter Price: <input type="number" min="0.00" max="100.00" step="0.01">
+      Filter Price: <input type="number" id="price" name="price" min="0.00" max="100.00" step="0.01">
+      <button>Submit</button>
       
-    <div class="row1">
-      <div class="column1">
-        <img src="https://bananarepublic.gap.com/webcontent/0017/779/769/cn17779769.jpg" alt="shirt" id="1">
-        
-                    <h4>
-                      
-                        <button class="button">Add to Cart</button>
-                    </h4>
+      <div id="products">
       </div>
-      <div class="column1">
-        <img src="https://bananarepublic.gap.com/webcontent/0017/357/601/cn17357601.jpg" alt="shirt" id="1">
-        <h4>
-                        
-                        <button class="button">Add to Cart</button>
-                    </h4>
-      </div>
-      <div class="column1">
-        <img src="https://bananarepublic.gap.com/webcontent/0018/071/585/cn18071585.jpg" alt="shirt" id="1">
-        <h4>
-                        
-                        <button class="button">Add to Cart</button>
-                    </h4>
-      </div>
-    </div>
-    <br>
-    <div class="row1">
-      <div class="column1">
-        <img src="https://bananarepublic.gap.com/webcontent/0017/750/892/cn17750892.jpg" alt="shirt" id="1">
-        <h4>
-                       
-                        <button class="button">Add to Cart</button>
-                    </h4>
-      </div>
-      <div class="column1">
-        <img src="https://bananarepublic.gap.com/webcontent/0017/302/180/cn17302180.jpg" alt="shirt" id="1">
-        <h4>
-                        
-                        <button class="button">Add to Cart</button>
-                    </h4>
-      </div>
-      <div class="column1">
-        <img src="https://bananarepublic.gap.com/webcontent/0017/421/158/cn17421158.jpg" alt="shirt" id="1">
-        <h4>
-                     
-                        <button class="button">Add to Cart</button>
-                    </h4>
-      </div>
-    </div>
+    </form>
   </body>
 </html>
