@@ -49,8 +49,103 @@ app.get("/cart", function(req, res){
 });
 
 
+app.get("/items",async function(req, res) {
+        if (req.session.authenticated) { //if user hasn't authenticated, sending them to login screen
+      //this is where the data will be retrieved from the database where you can add or delete items
+      //grab all items from mysql
+      let Fproducts = await getAllProducts("male");
+      let Mproducts = await getAllProducts("female");
+      res.render("items",{"Mproducts":Mproducts,"Fproducts":Fproducts});
+    }else { 
+    
+       res.render("login"); 
+   
+   }
+});
+
+app.get("/addItems",function(req, res) {
+    if (req.session.authenticated) { //if user hasn't authenticated, sending them to login screen
+        //this is where we are going to add items to the database
+        res.render("newItem");
+        
+    }else { 
+    
+       res.render("login"); 
+   
+   }
+});
+app.post("/addItems", async function(req, res){
+  //res.render("newAuthor");
+  if (req.session.authenticated) { //if user hasn't authenticated, sending them to login screen
+      let rows = await insertItem(req.body);
+      console.log(rows);
+      //res.send("First name: " + req.body.firstName); //When using the POST method, the form info is stored in req.body
+      let message = "Item WAS NOT added to the database!";
+      if (rows.affectedRows > 0) {
+          message= "Item successfully added!";
+      }
+      res.render("newItem", {"message":message});
+   }  else { 
+       res.render("login"); 
+   }
+    
+});
+
 app.get("/login", function(req, res) {
-   res.render("login.ejs"); 
+    res.render("login");
+    
+});
+
+function deleteItemM(uniqueId){
+     let conn = dbConnection();
+    
+    return new Promise(function(resolve, reject){
+        conn.connect(function(err) {
+           if (err) throw err;
+           console.log("Connected!");
+        
+           let sql = `DELETE FROM MaleProducts
+                      WHERE uniqueId = ?`;
+        
+           conn.query(sql, [uniqueId], function (err, rows, fields) {
+              if (err) throw err;
+              //res.send(rows);
+              conn.end();
+              resolve(rows);
+           });
+        
+        });//connect
+    });//promise 
+}
+
+function insertItem(body) {
+     let conn = dbConnection();
+    
+    return new Promise(function(resolve, reject){
+        conn.connect(function(err) {
+           if (err) throw err;
+           console.log("Connected!");
+        
+           let sql = `INSERT INTO MaleProducts
+           (typeClothing,price,color, imageLink)
+           VALUES (?,?,?,?)`;
+        
+           let params = [body.type, body.price, body.color, body.link];
+        
+           conn.query(sql, params, function (err, rows, fields) {
+              if (err) throw err;
+              //res.send(rows);
+              conn.end();
+              resolve(rows);
+           });
+        
+        });//connect
+    });//promise 
+}
+
+app.get("/logout",function(req, res) {
+   req.session.destroy();
+   res.redirect("/");//taking the user back to the login screen
 });
 
 function getColors(gender){

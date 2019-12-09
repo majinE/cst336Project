@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <link rel="stylesheet" href="/css/styles.css"/>
+    </head>
+    <body>
+
+        <h1> Adding New Item </h1>
+        
+
+        <form method="POST">
+        
+            Color: <input type="text" name="color"><br>    
+            Type: <input type="text" name="type"><br>
+            Price: <input type="text" name="price"><br>
+            Image Link:<input type="text" name="link"><br>
+        
+            <br><br>
+            <button>Add Item</button>
+        
+            <%= typeof(message) != "undefined"?message:"" %>
+            
+        </form>        
+
+        
+    </body>
+</html>
