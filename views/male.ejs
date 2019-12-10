@@ -17,16 +17,16 @@
           list.append(`<div class='column1'><img src='${products[i].imageLink}'>
                         <h4> Price: ${products[i].price}  <button class='button'>Add to Cart</>`);
         }
-        // for(let i )
     });//ready
+    
   </script>
   </head>
   <body id="36">
     
     <h1>Guys</h1>
     
-    <form action="/maleResults">
-      
+    <form action="/maleResults"> 
+    <!-- TRY POST -->
       <nav>
         <a href="/">Home</a>
         <a href="/male">Guys</a>
@@ -52,9 +52,10 @@
       Filter Price: <input type="number" id="price" name="price" min="0.00" max="100.00" step="0.01">
       <button>Submit</button>
       
+      </form>
+      
       <div id="products">
       </div>
-      
-    </form>
+
   </body>
 </html>

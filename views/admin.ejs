@@ -1,4 +1,3 @@
-  
 <!DOCTYPE html>
 <html>
     <head>
@@ -36,16 +35,23 @@
         
         <h3>Items</h3>
         
-        <% getAllProducts.forEach(function(products){  %>
+        <% maleProducts.forEach(function(products){  %>
         
-        
-            [<a href="/updateAuthor?authorId=<%= products.authorId %>">UPDATE</a>] 
-            [<a class="removeItem" href="/deleteProducts?authorId=<%= products.authorId %>">DELETE</a>] 
-            
-            <%= author.firstName %> <%= author.lastName %> <br>
-        
-        
+            <image src=<%= products.imageLink %> ></image>
+            [<a href="/updateItem?uniqueId=<%= products.uniqueId %>&gender=Male">UPDATE</a>] 
+            [<a class="removeItem" href="/deleteItem?uniqueId=<%= products.uniqueId %>&gender=Male">DELETE</a>] 
+            <br>
         <% }) %>
+        
+        <% femaleProducts.forEach(function(products){  %>
+        
+            <image src=<%= products.imageLink %> ></image>
+            [<a href="/updateItem?uniqueId=<%= products.uniqueId %>&gender=Female">UPDATE</a>] 
+            [<a class="removeItem" href="/deleteItem?uniqueId=<%= products.uniqueId %>&gender=Female">DELETE</a>] 
+            <br>
+        <% }) %>
+        
         
     </body>
 </html>
+

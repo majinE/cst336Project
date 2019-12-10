@@ -12,16 +12,19 @@
         <form method="POST">
         
             Color: <input type="text" name="color"
-                    value="<%= products.color %>"><br>    
+                    value="<%= itemInfo[0].color %>"><br>    
             Type: <input type="text" name="type"
-                    value="<%= products.type %>"><br>
+                    value="<%= itemInfo[0].typeClothing %>"><br>
             Price: <input type="text" name="price"
-                    value="<%= products.price %>"><br>
+                    value="<%= itemInfo[0].price %>"><br>
             Image Link:<input type="text" name="link"
-                    value="<%= products.link %>"><br>
-        
+                    value="<%= itemInfo[0].imageLink %>"><br>
+            
+            <input type="hidden" name="gender" value="<%= gender %>">
+            
+            <input type="hidden" name="itemId" value="<%= itemInfo[0].uniqueId %>">
             <br><br>
-            <button>Add Item</button>
+            <button>Update Item</button>
         
             <%= typeof(message) != "undefined"?message:"" %>
             

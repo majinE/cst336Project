@@ -4,28 +4,32 @@
         <title> Admin Login Screen </title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" href="/css/styles.css"/>
-<script>
-        $(document).ready(function() {
-            $("#loginBtn").on("click",function(){
-                $.ajax({
-                    method: "post",
-                    url: "/loginProcess",
-                    dataType: "json",
-                    data: { "username" : $("#username").val(),
-                            "password" : $("#password").val()},
-                    success: function(result,status) {
-                //alert(result);
-                    if(!result){
-                       alert("Wrong credentials!") 
-                    }else{
-                        location.href = "/admin";
-                    }
-                }
-                
-                });//ajax
-            });//click
-        }); //document.ready
-</script>
+        <script>
+                $(document).ready(function() {
+                    $("#loginBtn").on("click",function(){
+                        let username = $("#username").val();
+                        let password = $("#password").val();
+                        console.log(username);
+                        console.log(password);
+                        $.ajax({
+                            method: "post",
+                            url: "/loginProcess",
+                            dataType: "json",
+                            data: { "username" : username,
+                                    "password" : password},
+                            success: function(result,status) {
+                        //alert(result);
+                            if(!result){
+                               alert("Wrong credentials!") 
+                            }else{
+                                location.href = "/admin";
+                            }
+                        }
+                        
+                        });//ajax
+                    });//click
+                }); //document.ready
+        </script>
     </head>
     <body>
         <h1>Login</h1>
