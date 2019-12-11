@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Guys Clothes</title>
+    <title>Mens Clothing</title>
     <link rel="stylesheet" href="/css/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
@@ -10,12 +10,12 @@
         var list = $("#products");
         for(let i = 0; i < products.length; i++){
           if(i%3 == 0){
-            list.append("<div class='row1'>");
+            list.append("<br><br><div class='row1'>");
           } else if((i%3 == 2) || i == products.length-1){
             list.append("</div>")
           }
-          list.append(`<div class='column1'><img src='${products[i].imageLink}'><br>
-                        <strong> Price: ${products[i].price} </strong> <button value='${products[i].uniqueId}'> Add to Cart </button>`);
+          list.append(`<div class='column1'><img src='${products[i].imageLink}'><br><br>
+                        <strong> Price: ${products[i].price} </strong> <button value='${products[i].uniqueId}'> Add to Cart </button><br><br>`);
         }
         
         $("button").on("click", function(){
@@ -40,14 +40,14 @@
   </head>
   <body id="36">
     
-    <h1>Guys</h1>
+    <h1>Mens Clothing</h1>
     
     <form action="/maleResults">
       
       <nav>
         <a href="/">Home</a>
-        <a href="/male">Guys</a>
-        <a href="/female">Girls</a>
+        <a href="/male">Mens</a>
+        <a href="/female">Womens</a>
         <a href="/cart">Shopping Cart</a>
       </nav>
       
